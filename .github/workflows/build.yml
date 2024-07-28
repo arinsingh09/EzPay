@@ -20,9 +20,9 @@ jobs:
         run: npm install
 
       - name: Generate prisma client
-        run: |
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
-          npm run db:generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npm run db:generate
         
       - name: Run Build
         run: npm run build
