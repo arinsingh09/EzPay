@@ -7,6 +7,10 @@ COPY package.json package-lock.json turbo.json tsconfig.json ./
 COPY apps ./apps
 COPY packages ./packages
 
+# Set the DATABASE_URL environment variable
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
 # Install dependencies
 RUN npm install
 # Can you add a script to the global package.json that does this?

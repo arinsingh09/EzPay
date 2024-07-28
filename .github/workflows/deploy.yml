@@ -25,6 +25,8 @@ jobs:
         file: ./docker/Dockerfile.user
         push: true
         tags: arinsingh/ezpay:latest
+        build-args:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     - name: Verify Pushed Image
       run: docker pull arinsingh/ezpay:latest
