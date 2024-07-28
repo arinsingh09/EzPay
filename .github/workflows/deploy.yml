@@ -24,7 +24,20 @@ jobs:
         context: .
         file: ./docker/Dockerfile.user
         push: true
-        tags: arinsingh/ezpay:latest  # Replace with your Docker Hub username and repository
+        tags: arinsingh/ezpay:latest
 
     - name: Verify Pushed Image
-      run: docker pull arinsingh/ezpay:latest  # Replace with your Docker Hub username and repository
+      run: docker pull arinsingh/ezpay:latest
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          sudo docker pull arinsingh/ezpay:latest
+          sudo docker stop ezpay || true
+          sudo docker rm ezpay || true
+          sudo docker run -d --name ezpay -p 3005:3000 arinsingh/ezpay:latest
+Copy
