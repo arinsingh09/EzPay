@@ -11,9 +11,11 @@ COPY package.json package-lock.json turbo.json tsconfig.json ./
 COPY apps ./apps
 COPY packages ./packages
 
-# Set the DATABASE_URL environment variable
+# Set the DATABASE_URL and NEXTAUTH_URL environment variables
 ARG DATABASE_URL
+ARG NEXTAUTH_URL
 ENV DATABASE_URL=${DATABASE_URL}
+ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 
 # Install dependencies
 RUN npm install
