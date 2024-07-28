@@ -2,8 +2,16 @@ import React from 'react';
 import { BalanceCard } from '../../../components/BalanceCard';
 import { OnRampTransactions } from '../../../components/OnRampTransactions';
 import prisma from "@repo/db/client";
+import { OnRampStatus } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
+
+interface OnRampTransaction {
+  startTime: Date;
+  amount: number;
+  status: OnRampStatus;
+  provider: string;
+}
 
 async function getBalance() {
   const session = await getServerSession(authOptions);
@@ -37,7 +45,7 @@ async function getOnRampTransactions() {
       userId: Number(session.user.id)
     }
   });
-  return txns.map(t => ({
+  return txns.map((t: OnRampTransaction) => ({
     time: t.startTime,
     amount: t.amount,
     status: t.status,
