@@ -39,4 +39,4 @@ jobs:
           sudo docker pull arinsingh/ezpay:latest
           sudo docker stop ezpay || true
           sudo docker rm ezpay || true
-          sudo docker run -d --name ezpay -e DATABASE_URL={{secrets.DATABASE_URL}} -p 3005:3000 arinsingh/ezpay:latest
+          sudo docker run -d --name ezpay -e DATABASE_URL=${{ secrets.DATABASE_URL }} -p 3005:3000 arinsingh/ezpay:latest
