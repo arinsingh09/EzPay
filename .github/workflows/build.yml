@@ -3,6 +3,7 @@ name: Build on PR
 on:
   pull_request:
     branches:
+      - main
       - master
 
 jobs:
@@ -17,6 +18,11 @@ jobs:
       
       - name: Install Dependencies
         run: npm install
+
+      - name: Generate prisma client
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npm run db:generate
         
       - name: Run Build
         run: npm run build
