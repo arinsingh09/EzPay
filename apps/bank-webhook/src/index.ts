@@ -3,7 +3,6 @@ import { z } from "zod";
 import db from "@repo/db/client";
 
 const app = express();
-
 app.use(express.json());
 
 const paymentInformationSchema = z.object({
