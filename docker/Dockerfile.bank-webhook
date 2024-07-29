@@ -5,8 +5,7 @@ FROM node:20.12.0-alpine3.19
 WORKDIR /usr/src/app
 
 # Copy the package files and other configuration files
-COPY apps/bank-webhook/package.json apps/bank-webhook/package-lock.json ./ 
-COPY apps/bank-webhook/ ./apps/bank-webhook/
+COPY package.json package-lock.json turbo.json tsconfig.json ./
 
 # Set environment variables
 ARG DATABASE_URL
@@ -19,4 +18,4 @@ RUN npm install
 RUN npm run build
 
 # Set the command to start the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start-bank-webook"]
