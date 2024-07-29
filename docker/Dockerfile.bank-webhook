@@ -22,4 +22,4 @@ RUN npm install
 RUN npm run build
 
 # Set the command to start the application
-CMD ["npm", "run", "start-bank-webook"]
+CMD ["npm", "run", "start-bank-webhook"]

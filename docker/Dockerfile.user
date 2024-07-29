@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json turbo.json tsconfig.json ./
 
 # Copy the application source code
-COPY apps ./apps
+COPY apps/user-app ./apps/user-app
 COPY packages ./packages
 
 # Set the DATABASE_URL and NEXTAUTH_URL environment variables
