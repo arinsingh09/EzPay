@@ -1,0 +1,22 @@
+# Use the official Node.js image as the base image
+FROM node:20.12.0-alpine3.19
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Copy the package files and other configuration files
+COPY apps/bank-webhook/package.json apps/bank-webhook/package-lock.json ./ 
+COPY apps/bank-webhook/ ./apps/bank-webhook/
+
+# Set environment variables
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
+# Install dependencies
+RUN npm install
+
+# Build the application
+RUN npm run build
+
+# Set the command to start the application
+CMD ["npm", "run", "start"]
