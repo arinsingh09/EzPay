@@ -18,6 +18,9 @@ ENV DATABASE_URL=${DATABASE_URL}
 # Install dependencies
 RUN npm install
 
+# Generate Prisma client
+RUN DATABASE_URL=${DATABASE_URL} npm run db:generate
+
 # Build the application
 RUN npm run build
 
