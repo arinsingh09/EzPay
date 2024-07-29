@@ -7,6 +7,10 @@ WORKDIR /usr/src/app
 # Copy the package files and other configuration files
 COPY package.json package-lock.json turbo.json tsconfig.json ./
 
+# Copy the application source code
+COPY apps/bank-webhook ./apps/bank-webhook
+COPY packages ./packages
+
 # Set environment variables
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
