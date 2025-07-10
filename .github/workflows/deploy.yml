@@ -44,7 +44,7 @@ jobs:
         docker pull arinsingh/ezpay:latest
         docker pull arinsingh/bank-webhook:latest
 
-    - name: Deploy to EC2
+    - name: Deploy to Azure VM
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
