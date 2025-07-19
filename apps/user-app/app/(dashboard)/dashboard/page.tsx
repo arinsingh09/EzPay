@@ -6,6 +6,8 @@ import { OnRampStatus } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 
+export const dynamic = 'force-dynamic';
+
 interface OnRampTransaction {
   startTime: Date;
   amount: number;

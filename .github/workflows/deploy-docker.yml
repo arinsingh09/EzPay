@@ -43,22 +43,3 @@ jobs:
       run: |
         docker pull arinsingh/ezpay:latest
         docker pull arinsingh/bank-webhook:latest
-
-    - name: Deploy to Azure VM
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        script: |
-          # Deploy user app
-          sudo docker pull arinsingh/ezpay:latest
-          sudo docker stop ezpay || true
-          sudo docker rm ezpay || true
-          sudo docker run -d --name ezpay -e DATABASE_URL=${{ secrets.DATABASE_URL }} -e NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} -p 3005:3000 --restart always arinsingh/ezpay:latest
-
-          # Deploy bank-webhook app
-          sudo docker pull arinsingh/bank-webhook:latest
-          sudo docker stop bank-webhook || true
-          sudo docker rm bank-webhook || true
-          sudo docker run -d --name bank-webhook -e DATABASE_URL=${{ secrets.DATABASE_URL }} -p 3006:3000 --restart always arinsingh/bank-webhook:latest
