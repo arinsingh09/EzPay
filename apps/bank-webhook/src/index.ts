@@ -1,9 +1,11 @@
 import express from "express";
 import { z } from "zod";
+import cors from "cors";
 import db from "@repo/db/client";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const paymentInformationSchema = z.object({
     token: z.string(),
