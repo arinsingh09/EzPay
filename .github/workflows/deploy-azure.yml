@@ -28,4 +28,8 @@ jobs:
             sudo docker pull arinsingh/bank-webhook:latest
             sudo docker stop bank-webhook || true
             sudo docker rm bank-webhook || true
-            sudo docker run -d --name bank-webhook -e DATABASE_URL=${{ secrets.DATABASE_URL }} -p 3006:3003 --restart always arinsingh/bank-webhook:latest
+            sudo docker run -d --name bank-webhook \
+              -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+              -p 3006:3003 \
+              --restart always \
+              arinsingh/bank-webhook:latest
